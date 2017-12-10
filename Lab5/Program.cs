@@ -14,6 +14,8 @@ namespace Lab5
         [STAThread]
         static void Main()
         {
+            var rsa = new RSACryptoProvider(31, 53, 67, 2, 3);
+            var res = rsa.Encrypt("algebra");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
