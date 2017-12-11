@@ -55,6 +55,20 @@ namespace Lab5
             return result;
         }
 
+        public String Decrypt(String Cyphertext)
+        {
+            var numericalEquivalents = RSACryptoProvider.GetNumericalEquivalents(Cyphertext, this.CypherTextBlockSize);
+            String result = "";
+
+            foreach (var n in numericalEquivalents)
+            {
+                var decrypted = Math.Pow(n, this.DecryptionExponent, this.Modulus);
+                result += GetStringEquivalent(decrypted, PlainTextBlockSize);
+            }
+
+            return result.ToLower();
+        }
+
         private static String GetStringEquivalent(Int64 Number, Int32 Blocksize)
         {
             var size = Letters.Count();
